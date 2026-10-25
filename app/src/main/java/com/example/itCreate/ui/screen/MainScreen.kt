@@ -26,7 +26,8 @@ import com.example.itCreate.ui.components.TarjetaCard
 @Composable
 fun MainScreen (
     modifier: Modifier,
-    tarjetas: List<Tarjeta>
+    tarjetas: List<Tarjeta>,
+    onItemClick: (Long) -> Unit
 ){
     Column(
         modifier = modifier
@@ -50,6 +51,7 @@ fun MainScreen (
             items(tarjetas) { tarjetaActual ->
                 TarjetaCard(
                     modifier = Modifier.fillMaxWidth(),
+                    onClick = { onItemClick(tarjetaActual.id.toLong()) },
                     tarjeta = tarjetaActual
                 )
             }
@@ -57,7 +59,7 @@ fun MainScreen (
     }
 }
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
     MainScreen(
@@ -89,4 +91,4 @@ fun MainScreenPreview() {
             )
         )
     )
-}
+}*/

@@ -1,6 +1,7 @@
 package com.example.itCreate.model
 
 data class Tarjeta (
+    val id: Int,
     val titulo: String,
     val descripcion: String,
     val autor: String,
