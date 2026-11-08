@@ -1,6 +1,7 @@
 package com.example.itCreate.ui.navegacion
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -25,14 +26,14 @@ fun MyAppTopBar(navController: NavHostController) {
     val showBackButton = currentRoute != Rutas.HOME && currentRoute != Rutas.LOGIN
 
     TopAppBar(
-        title = { Text(title) },
+        title = { Text(title, style = MaterialTheme.typography.headlineLarge) },
         navigationIcon = {
             if (showBackButton) {
                 IconButton(onClick = {
                     navController.popBackStack()
                 }) {
                     Icon(
-                        imageVector = Icons.Default.ArrowBack,
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Volver atrás"
                     )
                 }

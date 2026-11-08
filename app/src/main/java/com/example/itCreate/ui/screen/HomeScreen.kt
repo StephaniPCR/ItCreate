@@ -69,7 +69,7 @@ fun HomeScreen(
                 TarjetaCard(
                     tarjeta = tarjeta,
                     onClick = { onItemClick(tarjeta.id.toLong()) },
-                    modifier = modifier
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         }

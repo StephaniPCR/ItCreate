@@ -10,6 +10,7 @@ import com.example.itCreate.model.Tarjeta
 
 
 object Rutas {
+    const val REGISTRO = "registro"
     const val LOGIN = "login"
     const val HOME = "home"
     const val GESTION = "gestion" //Gestión de carpetas personalizadas
@@ -29,12 +30,26 @@ fun AppNavHost (
         startDestination = Rutas.LOGIN,
         modifier = modifier
     ) {
+        composable(Rutas.REGISTRO) {
+            RegistroFormScreen(
+                onCancelarClick = {
+                    navController.popBackStack()
+                },
+                onRegistroExitoso = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
         composable(Rutas.LOGIN) {
             LoginScreen(
                 onLoginClick = {
                     navController.navigate(Rutas.HOME) {
                         popUpTo(Rutas.LOGIN) { inclusive = true }
                     }
+                },
+                onRegistroClick = {
+                    navController.navigate(Rutas.REGISTRO)
                 }
             )
         }

@@ -1,5 +1,6 @@
 package com.example.itCreate.ui.screen
 
+import android.R.attr.onClick
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,7 +21,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
-    onLoginClick: () -> Unit
+    onLoginClick: () -> Unit,
+    onRegistroClick:() -> Unit
 ) {
     Column(
         modifier = modifier
@@ -66,7 +68,7 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         TextButton(
-            onClick = { /* Falta */ }
+            onClick = { onRegistroClick() }
         ) {
             Text(text = "Crear cuenta")
         }
