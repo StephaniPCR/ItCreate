@@ -43,10 +43,10 @@ fun GestionScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text(
-                text = "Colecciones",
-                style = MaterialTheme.typography.headlineMedium
-            )
+//            Text(
+//                text = "Colecciones",
+//                style = MaterialTheme.typography.headlineMedium
+//            )
 
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),

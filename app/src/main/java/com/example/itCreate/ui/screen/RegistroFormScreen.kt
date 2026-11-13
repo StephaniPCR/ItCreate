@@ -174,7 +174,8 @@ fun RegistroFormScreen(
             }
 
             Button(
-                onClick = {
+                    modifier = Modifier.weight(1f),
+                    onClick = {
                     nombreError = RegistroValidator.validarNombre(nombreCompleto)
                     correoError = RegistroValidator.validarCorreo(correo)
                     usuarioError = RegistroValidator.validarUsuario(usuario)

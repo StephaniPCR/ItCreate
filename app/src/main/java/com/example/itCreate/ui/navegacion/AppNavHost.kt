@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.itCreate.ui.screen.*
 import com.example.itCreate.model.Tarjeta
+import com.example.itCreate.model.TipoMultimedia
 
 
 object Rutas {
@@ -19,6 +20,13 @@ object Rutas {
     fun detalleConId(id: Long) = "detalle/${id}"
 }
 
+// Lista multimedia
+val listaTarjetas = listOf(
+    Tarjeta(id = 1, titulo = "Vlog de Viaje por la Costa 🎥", descripcion = "Vídeo en 4K", autor = "Stephani", tipo = TipoMultimedia.VID),
+    Tarjeta(id = 2, titulo = "Atardecer en la Playa 🌅", descripcion = "Animación GIF", autor = "Stephani", tipo = TipoMultimedia.GIF),
+    Tarjeta(id = 3, titulo = "Tutorial de Edición Rápida ✂️", descripcion = "Efectos y cortes", autor = "Stephani", tipo = TipoMultimedia.VID),
+    Tarjeta(id = 4, titulo = "Sesión de Retrato Urbano 🏙️", descripcion = "Fotografía callejera", autor = "Stephani", tipo = TipoMultimedia.IMG)
+)
 
 @Composable
 fun AppNavHost (
@@ -62,12 +70,10 @@ fun AppNavHost (
         }
 
         composable(route = Rutas.DETALLE) { backStackEntry ->
-            // Extraemos el argumento
-            val idString = backStackEntry.arguments?.getString("tarjetaId")
-            // Convertimos a Long
-            val tarjetaId = idString?.toLongOrNull() ?: 1L
-            // Pintamos la pantalla de detalle con su ID correspondiente
-            DetalleScreen(tarjetaId = tarjetaId)
+            val idString = backStackEntry.arguments?.getString("tarjetaId") // Extraemos el argumento
+            val tarjetaId = idString?.toLongOrNull() ?: 1L // Convertimos a Long
+            val tarjetaSeleccionada = listaTarjetas.find { it.id.toLong() == tarjetaId } ?: listaTarjetas.first() //Buscamos el elmento que coincida con la ID
+            DetalleScreen(tarjeta = tarjetaSeleccionada) // Pintamos la pantalla de detalle con su ID correspondiente
         }
 
         composable(Rutas.GESTION) {
