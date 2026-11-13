@@ -25,7 +25,7 @@ fun CrearCarpetaDialog(
     var tieneError by remember { mutableStateOf(false) }
 
     AlertDialog(
-        onDismissRequest = onDismiss,
+        onDismissRequest = onDismiss, // Gesto hacia atrás o al presionar en la zona oscura
         title = {
             Text(text = "Nueva Carpeta")
         },
@@ -38,7 +38,8 @@ fun CrearCarpetaDialog(
                     value = nombreCarpeta,
                     onValueChange = {
                         nombreCarpeta = it
-                        if (tieneError) tieneError = false
+                        if (tieneError)
+                            tieneError = false
                     },
                     label = { Text("Nombre de la carpeta")},
                     singleLine = true,
@@ -53,7 +54,7 @@ fun CrearCarpetaDialog(
         confirmButton = {
             Button(
                 onClick= {
-                    if (nombreCarpeta.trim().isNotBlank()) {
+                    if (nombreCarpeta.isNotBlank()) {
                         onCrearCarpeta(nombreCarpeta.trim())
                         onDismiss()
                     } else {

@@ -15,15 +15,15 @@ fun MyAppTopBar(navController: NavHostController) {
     val currentRoute = navBackStackEntry.value?.destination?.route
 
     val title = when (currentRoute) {
-        Rutas.HOME -> "ItCreate - Home"
-        Rutas.GESTION -> "Gestión de Carpetas"
-        Rutas.PERFIL -> "Perfil de Creador"
-        Rutas.DETALLE -> "Detalle Multimedia"
+        Rutas.HOME -> "ItCreate"
+        Rutas.GESTION -> "Colecciones"
+        Rutas.PERFIL -> "Perfil"
+        Rutas.DETALLE -> "Detalle"
         else -> "ItCreate"
     }
 
-    //La flecha de "volver atrás" en el Login y Home no se muestra
-    val showBackButton = currentRoute != Rutas.HOME && currentRoute != Rutas.LOGIN
+    //La flecha de "volver atrás" en el Login, Registro y Home no se muestra
+    val showBackButton = currentRoute != Rutas.HOME && currentRoute != Rutas.LOGIN && currentRoute != Rutas.REGISTRO
 
     TopAppBar(
         title = { Text(title, style = MaterialTheme.typography.headlineLarge) },

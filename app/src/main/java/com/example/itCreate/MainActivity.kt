@@ -28,20 +28,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            //Historial de rutas: ¿Dónde he estado?
-            val navController = rememberNavController()
-            //Historial de pantallas
-            val navBackStackEntry by navController.currentBackStackEntryAsState()
-            //Me indican en qué pantalla está el usuario
-            val currentRoute = navBackStackEntry?.destination?.route
-            //Mostramos top y bottom bar sólo si no estamos en login
-            val showBars = currentRoute != Rutas.LOGIN
+            val navController = rememberNavController() //Historial de rutas: ¿Dónde he estado?
+            val navBackStackEntry by navController.currentBackStackEntryAsState() //Historial de pantallas
+            val currentRoute = navBackStackEntry?.destination?.route //Me indican en qué pantalla está el usuario
+            val showBars = currentRoute != Rutas.LOGIN && currentRoute != Rutas.REGISTRO //Mostramos top y bottom bar sólo si no estamos en login
 
             ItCreateTheme {
                 //Andamio o estructura móvil
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     topBar = {
+                        //
                         if (showBars) {
                             MyAppTopBar(navController = navController)
                         }
@@ -58,7 +55,6 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(innerPadding),
-                        //startDestination = Rutas.LOGIN //Login como primera pantalla
                     )
                 }
             }

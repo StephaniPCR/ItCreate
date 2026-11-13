@@ -18,30 +18,39 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.itCreate.R
+import com.example.itCreate.model.Tarjeta
+import com.example.itCreate.model.TipoMultimedia
 import com.example.itCreate.ui.components.CrearCarpetaDialog
 
 @Composable
 fun DetalleScreen(
-    modifier: Modifier = Modifier,
-    tarjetaId: Long
+    tarjeta: Tarjeta,
+    modifier: Modifier = Modifier
 ) {
-    // Ejemplo detalle
-    val tituloMostrado = if (tarjetaId == 1L) "Vlog de Viaje por la Costa 🎥" else "Publicación Creativa #${tarjetaId}"
-    val autorMostrado = "Stephani C."
-    val descripcionLarga = "Esta es la descripción detallada de la publicación seleccionada."
+    // Calculamos la miniatura correcta según su tipo (igual que en TarjetaCard)
+    val imagenRes = when (tarjeta.tipo) {
+        TipoMultimedia.VID -> R.drawable.video_mockup
+        TipoMultimedia.GIF -> R.drawable.gif_mockup
+        else -> R.drawable.image_mockup
+    }
 
+//    // Ejemplo detalle
+//    val tituloMostrado = if (tarjetaId == 1L) "Vlog de Viaje por la Costa 🎥" else "Publicación Creativa #${tarjetaId}"
+//    val autorMostrado = "Stephani C."
+//    val descripcionLarga = "Esta es la descripción detallada de la publicación seleccionada."
+//
     // Ejemplo comentario
     val listaComentarios = listOf(
         "Me encanta tu publicación.",
         "¿Cómo lo has hecho?",
-        "Gracias por la inspiración."
+       "Gracias por la inspiración."
     )
 
     var mostrarDialogoCarpeta by remember { mutableStateOf(false) }
     var esFavorito by remember { mutableStateOf(false) }
 
     LazyColumn(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -53,8 +62,8 @@ fun DetalleScreen(
                     .height(260.dp)
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.image_mockup),
-                    contentDescription = tituloMostrado,
+                    painter = painterResource(id = imagenRes),
+                    contentDescription = tarjeta.titulo,
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop
                 )
@@ -63,7 +72,7 @@ fun DetalleScreen(
 
         item {
             Text(
-                text = tituloMostrado,
+                text = tarjeta.titulo,
                 style = MaterialTheme.typography.headlineMedium
             )
             IconButton(
@@ -84,7 +93,7 @@ fun DetalleScreen(
 
         item {
             Text(
-                text = "Por: $autorMostrado",
+                text = "Por: " + tarjeta.autor,
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.primary
             )
@@ -92,7 +101,7 @@ fun DetalleScreen(
 
         item {
             Text(
-                text = descripcionLarga,
+                text = tarjeta.descripcion,
                 style = MaterialTheme.typography.bodyLarge
             )
         }
