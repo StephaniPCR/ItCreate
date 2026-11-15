@@ -32,7 +32,6 @@ fun MyAppBottomBar(navController: NavHostController) {
                     contentDescription = "Home"
                 )
             },
-            //label = { Text("Home") }
         )
 
         NavigationBarItem(
@@ -52,7 +51,6 @@ fun MyAppBottomBar(navController: NavHostController) {
                     contentDescription = "Gestión"
                 )
             },
-            //label = { Text("Carpetas") }
         )
 
         NavigationBarItem(
@@ -72,7 +70,6 @@ fun MyAppBottomBar(navController: NavHostController) {
                     contentDescription = "Perfil"
                 )
             },
-            //label = { Text("Perfil") }
         )
     }
 }

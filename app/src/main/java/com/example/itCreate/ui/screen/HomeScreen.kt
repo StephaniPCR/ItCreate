@@ -15,8 +15,9 @@ import com.example.itCreate.ui.components.TarjetaCard
 
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier,
-    onItemClick: (Long) -> Unit
+    tarjetas: List<Tarjeta>, // Recibe la lista viva
+    onItemClick: (Long) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val listaMultimedia = listOf(
         Tarjeta(
@@ -60,7 +61,7 @@ fun HomeScreen(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(listaMultimedia) { tarjeta ->
+            items(tarjetas) { tarjeta ->
                 TarjetaCard(
                     tarjeta = tarjeta,
                     onClick = { onItemClick(tarjeta.id.toLong()) },

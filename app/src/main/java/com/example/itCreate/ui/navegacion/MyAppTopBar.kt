@@ -2,6 +2,7 @@ package com.example.itCreate.ui.navegacion
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -19,6 +20,7 @@ fun MyAppTopBar(navController: NavHostController) {
         Rutas.GESTION -> "Colecciones"
         Rutas.PERFIL -> "Perfil"
         Rutas.DETALLE -> "Detalle"
+        Rutas.SUBIR -> "Nueva Publicación"
         else -> "ItCreate"
     }
 
@@ -38,6 +40,20 @@ fun MyAppTopBar(navController: NavHostController) {
                     )
                 }
             }
+        },
+        actions = {
+            if (currentRoute == Rutas.HOME) { //Sólo puedes subir contenido desde Home
+                IconButton(onClick = {
+                    navController.navigate(Rutas.SUBIR)
+                }) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = "Subir nuevo contenido"
+                    )
+                }
+            }
         }
+
+
     )
 }

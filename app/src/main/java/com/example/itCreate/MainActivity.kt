@@ -31,7 +31,10 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController() //Historial de rutas: ¿Dónde he estado?
             val navBackStackEntry by navController.currentBackStackEntryAsState() //Historial de pantallas
             val currentRoute = navBackStackEntry?.destination?.route //Me indican en qué pantalla está el usuario
-            val showBars = currentRoute != Rutas.LOGIN && currentRoute != Rutas.REGISTRO //Mostramos top y bottom bar sólo si no estamos en login
+            val showBars =
+                currentRoute != Rutas.LOGIN &&
+                currentRoute != Rutas.REGISTRO &&
+                currentRoute != Rutas.SUBIR //Mostramos top y bottom bar sólo si no estamos en login
 
             ItCreateTheme {
                 //Andamio o estructura móvil
